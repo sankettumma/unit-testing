@@ -127,7 +127,7 @@ export class BasicDetails extends LocalizeMixin(LitElement) {
     return html` <div class="form-basic">
       <h2>${localize.msg('change-language:loandetails')}</h2>
       <lion-form>
-        <form class="basic-web-form" @submit=${this._captureDetails}>
+        <form class="basic-web-form" @submit=${()=>this._captureDetails()}>
           <!-- <div class="basic-form"> -->
           <lion-input
             label="${localize.msg('change-language:Name')}"
@@ -173,7 +173,7 @@ export class BasicDetails extends LocalizeMixin(LitElement) {
             ]}"
             .modelValue="${this.amount}"
             label="${localize.msg('change-language:Amount')}"
-            @keyup=${this._numToWord}
+            @keyup=${()=>this._numToWord()}
           >
           </lion-input-amount>
 
@@ -195,10 +195,10 @@ export class BasicDetails extends LocalizeMixin(LitElement) {
       </lion-form>
 
       <div class="btn-prev-nxt-parent">
-        <lion-button class="btn-previous btn" @click=${this._toDashboard}
+        <lion-button class="btn-previous btn" @click=${()=>this._toDashboard()}
           >${localize.msg('change-language:btnPrev')}</lion-button
         >
-        <lion-button @click=${this._captureDetails} class="btn-next btn"
+        <lion-button @click=${()=>this._captureDetails()} class="btn-next btn"
           >${localize.msg('change-language:btnNext')}</lion-button
         >
       </div>
@@ -219,7 +219,7 @@ export class BasicDetails extends LocalizeMixin(LitElement) {
     const _amount = this.shadowRoot.querySelector('.amount').value;
     const _period = this.shadowRoot.querySelector('.period').value;
 
-    if (parseFloat(_amount.replace(/,/g, '')) < 10000) {
+    if (parseFloat(()=>_amount.replace(/,/g, '')) < 10000) {
       // alert('Amount should not be less than 10000');
       this.shadowRoot.querySelector('.amount').classList.add('e-handle');
 
