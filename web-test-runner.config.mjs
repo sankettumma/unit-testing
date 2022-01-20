@@ -3,6 +3,8 @@ import { chromeLauncher } from '@web/test-runner';
 
 export default /** @type {import("@web/test-runner").TestRunnerConfig} */ ({
   files: 'test/**/*.test.js',
+//  files: 'test/**/*customer-details.test.js',
+
   nodeResolve: true,
   browsers: [chromeLauncher({ launchOptions: { args: ['--no-sandbox'] } })],
 
